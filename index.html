@@ -28,8 +28,137 @@
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
 
   <style>
-    html { scroll-behavior: smooth; }
-    body { margin: 0; background: #050505; }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+    body {
+      margin: 0;
+      background: #050505;
+      overflow-x: hidden;
+    }
+
+    /* Evita que os carrosséis de largura infinita alarguem a grade no celular. */
+    .hero-grid,
+    .hero-copy,
+    .hero-platforms,
+    .hero-platform-track {
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    .hero-copy,
+    .hero-title,
+    .hero-description,
+    .hero-benefit-text,
+    .hero-badge {
+      overflow-wrap: anywhere;
+      word-break: normal;
+    }
+
+    .hero-platforms {
+      overflow: hidden;
+    }
+
+    @media (max-width: 767px) {
+      .hero-section {
+        padding: 3rem 1rem 3.5rem;
+      }
+
+      .hero-grid {
+        display: block;
+        width: 100%;
+      }
+
+      .hero-copy {
+        width: 100%;
+      }
+
+      .hero-badge {
+        display: block;
+        width: 100%;
+        padding: .65rem .75rem;
+        font-size: .65rem;
+        line-height: 1.35;
+        letter-spacing: .045em;
+        border-radius: .75rem;
+      }
+
+      .hero-kicker {
+        padding-left: 0;
+        font-size: .65rem;
+        line-height: 1.4;
+        letter-spacing: .14em;
+      }
+
+      .hero-title {
+        margin-bottom: 1.25rem;
+        font-size: clamp(2.05rem, 9.2vw, 2.65rem);
+        line-height: 1.06;
+        letter-spacing: -.035em;
+      }
+
+      .hero-description {
+        margin-bottom: 1.75rem;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .hero-benefits {
+        margin-bottom: 2rem;
+      }
+
+      .hero-benefits li {
+        gap: .7rem;
+      }
+
+      .hero-benefit-text {
+        min-width: 0;
+        font-size: .94rem;
+        line-height: 1.48;
+      }
+
+      .hero-cta {
+        width: 100%;
+        padding: 1.05rem .85rem;
+        font-size: .9rem;
+        line-height: 1.25;
+        letter-spacing: .035em;
+        white-space: normal;
+      }
+
+      .hero-platforms {
+        width: 100%;
+        margin-top: 3.25rem;
+      }
+
+      .hero-platform-heading {
+        margin-bottom: 1.5rem;
+      }
+
+      .hero-platform-count {
+        font-size: 2.75rem;
+      }
+
+      .hero-coverage-pill {
+        width: min(100%, 21rem);
+        justify-content: center;
+        padding: .65rem .8rem;
+        line-height: 1.35;
+      }
+
+      .hero-platform-track {
+        gap: .75rem;
+      }
+
+      #platform-row-1 > div,
+      #platform-row-2 > div {
+        width: 5.25rem;
+        height: 5.25rem;
+        border-radius: 1rem;
+      }
+    }
 
     @keyframes marquee {
       0% { transform: translateX(0); }
@@ -100,61 +229,61 @@
 <body class="min-h-screen bg-[#050505] text-white font-sans selection:bg-[#FF5500]/30 selection:text-white">
 
   <!-- HERO -->
-  <section class="bg-[#050505] text-white pt-20 pb-16 px-4 md:px-8 relative overflow-hidden">
+  <section class="hero-section bg-[#050505] text-white pt-20 pb-16 px-4 md:px-8 relative overflow-hidden">
     <div class="absolute inset-0 bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20"></div>
 
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
-      <div>
+    <div class="hero-grid max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <div class="hero-copy">
         <div class="flex flex-col gap-2 mb-6 items-start">
-          <div class="inline-block bg-orange-500/10 border border-orange-500/30 text-orange-500 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+          <div class="hero-badge inline-block bg-orange-500/10 border border-orange-500/30 text-orange-500 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
             🔥 O ATALHO DEFINITIVO: Acesso a + de 500 Funis Validados por apenas R$ 10,00!
           </div>
-          <div class="text-xs text-gray-500 font-bold tracking-widest px-2 mt-1">ACESSO IMEDIATO • 100% DIGITAL</div>
+          <div class="hero-kicker text-xs text-gray-500 font-bold tracking-widest px-2 mt-1">ACESSO IMEDIATO • 100% DIGITAL</div>
         </div>
 
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+        <h1 class="hero-title text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
           Por que criar uma oferta do zero se você pode <span class="text-orange-500">ter acesso ao que já vende?</span>
         </h1>
 
-        <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+        <p class="hero-description text-gray-400 text-lg mb-8 leading-relaxed">
           Tenha acesso à lista com mais de 500 checkouts e Landing Pages mais acessados da internet. Modele as estruturas milionárias das maiores plataformas do mercado e lance seu próximo produto vencedor de forma rápida e segura.
         </p>
 
-        <ul class="space-y-4 mb-10">
+        <ul class="hero-benefits space-y-4 mb-10">
           <li class="flex items-start gap-3">
             <i data-lucide="circle-check-big" class="text-orange-500 shrink-0 mt-1" width="20" height="20"></i>
-            <span class="text-gray-300 font-medium"><strong class="text-white">O fim da invenção de roda:</strong> modele a estrutura exata dos funis que já estão escalados.</span>
+            <span class="hero-benefit-text text-gray-300 font-medium"><strong class="text-white">O fim da invenção de roda:</strong> modele a estrutura exata dos funis que já estão escalados.</span>
           </li>
           <li class="flex items-start gap-3">
             <i data-lucide="circle-check-big" class="text-orange-500 shrink-0 mt-1" width="20" height="20"></i>
-            <span class="text-gray-300 font-medium"><strong class="text-white">Acesso direto ao que funciona:</strong> mais de 500 ofertas líderes prontas para você analisar.</span>
+            <span class="hero-benefit-text text-gray-300 font-medium"><strong class="text-white">Acesso direto ao que funciona:</strong> mais de 500 ofertas líderes prontas para você analisar.</span>
           </li>
           <li class="flex items-start gap-3">
             <i data-lucide="circle-check-big" class="text-orange-500 shrink-0 mt-1" width="20" height="20"></i>
-            <span class="text-gray-300 font-medium"><strong class="text-white">Engenharia Reversa Completa:</strong> não veja apenas o checkout. Acesse também a Landing Page exata de cada oferta.</span>
+            <span class="hero-benefit-text text-gray-300 font-medium"><strong class="text-white">Engenharia Reversa Completa:</strong> não veja apenas o checkout. Acesse também a Landing Page exata de cada oferta.</span>
           </li>
           <li class="flex items-start gap-3">
             <i data-lucide="circle-check-big" class="text-orange-500 shrink-0 mt-1" width="20" height="20"></i>
-            <span class="text-gray-300 font-medium"><strong class="text-white">Economia de Tempo e Verba:</strong> pare de criar no escuro. Comece modelando uma ideia validada.</span>
+            <span class="hero-benefit-text text-gray-300 font-medium"><strong class="text-white">Economia de Tempo e Verba:</strong> pare de criar no escuro. Comece modelando uma ideia validada.</span>
           </li>
         </ul>
 
-        <a href="#planos" class="block w-full md:w-auto text-center bg-gradient-to-r from-[#FF6B00] to-[#FF5500] hover:from-[#FF5500] hover:to-[#e64d00] text-white font-extrabold py-5 px-8 rounded-lg text-lg lg:text-xl uppercase tracking-wide glow-orange transition-all transform hover:scale-[1.02]">
+        <a href="#planos" class="hero-cta block w-full md:w-auto text-center bg-gradient-to-r from-[#FF6B00] to-[#FF5500] hover:from-[#FF5500] hover:to-[#e64d00] text-white font-extrabold py-5 px-8 rounded-lg text-lg lg:text-xl uppercase tracking-wide glow-orange transition-all transform hover:scale-[1.02]">
           QUERO ACESSAR + DE 500 FUNIS AGORA
         </a>
       </div>
 
-      <div class="relative mt-12 md:mt-0 w-full flex flex-col items-center">
-        <div class="text-center mb-8 relative z-20">
+      <div class="hero-platforms relative mt-12 md:mt-0 w-full flex flex-col items-center">
+        <div class="hero-platform-heading text-center mb-8 relative z-20">
           <h3 class="text-gray-500 font-bold tracking-[0.2em] uppercase text-[10px] mb-2">Cobertura</h3>
-          <div class="text-5xl font-black text-white mb-3 drop-shadow-lg">+20</div>
-          <div class="inline-flex items-center gap-2 bg-[#0A0A0B] border border-gray-800 px-4 py-2 rounded-full shadow-2xl">
+          <div class="hero-platform-count text-5xl font-black text-white mb-3 drop-shadow-lg">+20</div>
+          <div class="hero-coverage-pill inline-flex items-center gap-2 bg-[#0A0A0B] border border-gray-800 px-4 py-2 rounded-full shadow-2xl">
             <span class="w-2 h-2 rounded-full bg-[#00FF66] animate-pulse shadow-[0_0_8px_rgba(0,255,102,0.6)]"></span>
             <span class="text-gray-400 text-xs font-medium">operando <strong class="text-white">+ de 20 plataformas</strong> 24/7</span>
           </div>
         </div>
 
-        <div class="relative w-full mask-horizontal overflow-hidden flex flex-col gap-4">
+        <div class="hero-platform-track relative w-full mask-horizontal overflow-hidden flex flex-col gap-4">
           <div id="platform-row-1" class="animate-marquee gap-4"></div>
           <div id="platform-row-2" class="animate-marquee-reverse gap-4"></div>
         </div>
