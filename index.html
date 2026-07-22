@@ -1,661 +1,514 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Radar Secreto: acesso a mais de 500 funis, checkouts e landing pages validadas." />
-  <title>Radar Secreto — +500 Funis Validados</title>
-
-  <!-- Tailwind via CDN: ideal para publicar este arquivo diretamente na Vercel -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            radar: {
-              orange: '#FF5500',
-              orangeLight: '#FF6B00',
-              black: '#050505'
-            }
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar Secreto — O Acervo com os 500 Checkouts Mais Lucrativos</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
         }
-      }
-    };
-  </script>
-
-  <!-- Ícones Lucide -->
-  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
-
-  <style>
-    html {
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-      -webkit-text-size-adjust: 100%;
-    }
-    body {
-      margin: 0;
-      background: #050505;
-      overflow-x: hidden;
-    }
-
-    /* Evita que os carrosséis de largura infinita alarguem a grade no celular. */
-    .hero-grid,
-    .hero-copy,
-    .hero-platforms,
-    .hero-platform-track {
-      min-width: 0;
-      max-width: 100%;
-    }
-
-    .hero-copy,
-    .hero-title,
-    .hero-description,
-    .hero-benefit-text,
-    .hero-badge {
-      overflow-wrap: anywhere;
-      word-break: normal;
-    }
-
-    .hero-platforms {
-      overflow: hidden;
-    }
-
-    @media (max-width: 767px) {
-      .hero-section {
-        padding: 3rem 1rem 3.5rem;
-      }
-
-      .hero-grid {
-        display: block;
-        width: 100%;
-      }
-
-      .hero-copy {
-        width: 100%;
-      }
-
-      .hero-badge {
-        display: block;
-        width: 100%;
-        padding: .65rem .75rem;
-        font-size: .65rem;
-        line-height: 1.35;
-        letter-spacing: .045em;
-        border-radius: .75rem;
-      }
-
-      .hero-kicker {
-        padding-left: 0;
-        font-size: .65rem;
-        line-height: 1.4;
-        letter-spacing: .14em;
-      }
-
-      .hero-title {
-        margin-bottom: 1.25rem;
-        font-size: clamp(2.05rem, 9.2vw, 2.65rem);
-        line-height: 1.06;
-        letter-spacing: -.035em;
-      }
-
-      .hero-description {
-        margin-bottom: 1.75rem;
-        font-size: 1rem;
-        line-height: 1.6;
-      }
-
-      .hero-benefits {
-        margin-bottom: 2rem;
-      }
-
-      .hero-benefits li {
-        gap: .7rem;
-      }
-
-      .hero-benefit-text {
-        min-width: 0;
-        font-size: .94rem;
-        line-height: 1.48;
-      }
-
-      .hero-cta {
-        width: 100%;
-        padding: 1.05rem .85rem;
-        font-size: .9rem;
-        line-height: 1.25;
-        letter-spacing: .035em;
-        white-space: normal;
-      }
-
-      .hero-platforms {
-        width: 100%;
-        margin-top: 3.25rem;
-      }
-
-      .hero-platform-heading {
-        margin-bottom: 1.5rem;
-      }
-
-      .hero-platform-count {
-        font-size: 2.75rem;
-      }
-
-      .hero-coverage-pill {
-        width: min(100%, 21rem);
-        justify-content: center;
-        padding: .65rem .8rem;
-        line-height: 1.35;
-      }
-
-      .hero-platform-track {
-        gap: .75rem;
-      }
-
-      #platform-row-1 > div,
-      #platform-row-2 > div {
-        width: 5.25rem;
-        height: 5.25rem;
-        border-radius: 1rem;
-      }
-    }
-
-    @keyframes marquee {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    @keyframes marqueeReverse {
-      0% { transform: translateX(-50%); }
-      100% { transform: translateX(0); }
-    }
-
-    .animate-marquee {
-      animation: marquee 40s linear infinite;
-      display: flex;
-      width: max-content;
-    }
-
-    .animate-marquee-reverse {
-      animation: marqueeReverse 40s linear infinite;
-      display: flex;
-      width: max-content;
-    }
-
-    .animate-marquee:hover,
-    .animate-marquee-reverse:hover {
-      animation-play-state: paused;
-    }
-
-    .glow-orange {
-      box-shadow: 0 0 20px rgba(255, 85, 0, 0.4);
-    }
-
-    .mask-horizontal {
-      mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-    }
-
-    .faq-answer {
-      max-height: 0;
-      opacity: 0;
-      overflow: hidden;
-      transition: max-height .3s ease, opacity .3s ease, padding .3s ease;
-    }
-
-    .faq-item.open .faq-answer {
-      max-height: 220px;
-      opacity: 1;
-      padding-bottom: 1.5rem;
-    }
-
-    .faq-item.open .faq-chevron {
-      transform: rotate(180deg);
-    }
-
-    .faq-chevron {
-      transition: transform .3s ease;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-      }
-    }
-  </style>
+        @keyframes marquee-reverse {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0%); }
+        }
+        .animate-marquee {
+            animation: marquee 40s linear infinite;
+            display: flex;
+            width: max-content;
+        }
+        .animate-marquee-reverse {
+            animation: marquee-reverse 40s linear infinite;
+            display: flex;
+            width: max-content;
+        }
+        .animate-marquee:hover, .animate-marquee-reverse:hover {
+            animation-play-state: paused;
+        }
+        .mask-horizontal {
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+        .glow-orange {
+            box-shadow: 0 0 20px rgba(255, 85, 0, 0.4);
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-[#050505] text-white font-sans selection:bg-[#FF5500]/30 selection:text-white">
+<body class="bg-[#050505] text-white font-sans selection:bg-[#FF5500]/30 selection:text-white overflow-x-hidden">
 
-  <!-- HERO -->
-  <section class="hero-section bg-[#050505] text-white pt-20 pb-16 px-4 md:px-8 relative overflow-hidden">
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20"></div>
+    <section class="bg-[#050505] text-white pt-20 pb-16 px-4 md:px-8 relative overflow-hidden">
+        <!-- Grid Background Effect -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#1f1f1f_1px,transparent_1px),linear-gradient(to_bottom,#1f1f1f_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20"></div>
+        
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
+            <!-- Coluna Esquerda: Copy Principal -->
+            <div class="min-w-0 max-w-full">
+                <div class="flex flex-col gap-2 mb-6 items-start">
+                    <div class="inline-block bg-orange-500/10 border border-orange-500/30 text-orange-500 text-xs md:text-sm font-bold px-4 py-2 rounded-2xl md:rounded-full uppercase tracking-wider">
+                        🔥 O ATALHO DEFINITIVO: Acesso a + de 500 Funis Validados por apenas R$ 10,00!
+                    </div>
+                    <div class="text-xs text-gray-500 font-bold tracking-widest px-2 mt-1">ACESSO IMEDIATO • 100% DIGITAL</div>
+                </div>
+                
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 break-words">
+                    Por que criar uma oferta do zero se você pode <span class="text-orange-500">ter acesso ao que já vende?</span>
+                </h1>
+                <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+                    Tenha acesso à lista com mais de 500 checkouts (e Landing Pages) mais acessados da internet. Modele as estruturas milionárias das maiores plataformas do mercado e lance o seu próximo produto vencedor de forma rápida e segura.
+                </p>
+                
+                <ul class="space-y-4 mb-10">
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check-circle-2" class="text-orange-500 shrink-0 mt-1"></i>
+                        <span class="text-gray-300 font-medium"><strong class="text-white">O fim da invenção de roda:</strong> Modele a estrutura exata dos funis que já estão escalados.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check-circle-2" class="text-orange-500 shrink-0 mt-1"></i>
+                        <span class="text-gray-300 font-medium"><strong class="text-white">Acesso direto ao que funciona:</strong> + de 500 ofertas líderes prontas para você analisar.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check-circle-2" class="text-orange-500 shrink-0 mt-1"></i>
+                        <span class="text-gray-300 font-medium"><strong class="text-white">Engenharia Reversa Completa:</strong> Não veja apenas o checkout. Acesse de quebra a Landing Page exata de cada oferta.</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <i data-lucide="check-circle-2" class="text-orange-500 shrink-0 mt-1"></i>
+                        <span class="text-gray-300 font-medium"><strong class="text-white">Economia de Tempo e Verba:</strong> Pare de criar no escuro. Comece o jogo modelando uma ideia validada.</span>
+                    </li>
+                </ul>
+                
+                <a href="#planos" class="block w-full md:w-max text-center bg-gradient-to-r from-[#FF6B00] to-[#FF5500] hover:from-[#FF5500] hover:to-[#e64d00] text-white font-extrabold py-5 px-8 rounded-lg text-lg lg:text-xl uppercase tracking-wide glow-orange transition-all transform hover:scale-[1.02]">
+                    QUERO ACESSAR + DE 500 FUNIS AGORA
+                </a>
+            </div>
 
-    <div class="hero-grid max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
-      <div class="hero-copy">
-        <div class="flex flex-col gap-2 mb-6 items-start">
-          <div class="hero-badge inline-block bg-orange-500/10 border border-orange-500/30 text-orange-500 text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
-            🔥 O ATALHO DEFINITIVO: Acesso a + de 500 Funis Validados por apenas R$ 10,00!
-          </div>
-          <div class="hero-kicker text-xs text-gray-500 font-bold tracking-widest px-2 mt-1">ACESSO IMEDIATO • 100% DIGITAL</div>
+            <!-- Coluna Direita: O Carrossel de Plataformas -->
+            <div class="relative w-full flex flex-col items-center justify-center pt-8 lg:pt-0 overflow-hidden min-w-0">
+                <div class="text-center mb-8 relative z-20">
+                    <h3 class="text-gray-500 font-bold tracking-[0.2em] uppercase text-[10px] mb-2">Cobertura</h3>
+                    <div class="text-6xl md:text-7xl font-black text-white mb-3 drop-shadow-lg">+20</div>
+                    <div class="inline-flex items-center gap-2 bg-[#0A0A0B] border border-gray-800 px-5 py-2.5 rounded-full shadow-2xl">
+                        <span class="w-2.5 h-2.5 rounded-full bg-[#00FF66] animate-pulse shadow-[0_0_8px_rgba(0,255,102,0.6)]"></span>
+                        <span class="text-gray-400 text-xs font-medium uppercase tracking-widest">operando <strong class="text-white">plataformas</strong> 24/7</span>
+                    </div>
+                </div>
+
+                <div class="relative w-full mask-horizontal overflow-hidden flex flex-col gap-4 py-4">
+                    <!-- Linha 1 -->
+                    <div class="animate-marquee flex gap-4 w-max">
+                        <!-- Itens Originais -->
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#00E676]/10"><div class="w-5 h-5 rounded-full bg-[#00E676]"></div></div><span class="text-gray-400 text-[10px] font-bold">Kiwify</span></div>
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#F04E23]/10"><div class="w-5 h-5 rounded-full bg-[#F04E23]"></div></div><span class="text-gray-400 text-[10px] font-bold">Hotmart</span></div>
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#00BFFF]/10"><div class="w-5 h-5 rounded-full bg-[#00BFFF]"></div></div><span class="text-gray-400 text-[10px] font-bold">Kirvano</span></div>
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#FF0055]/10"><div class="w-5 h-5 rounded-full bg-[#FF0055]"></div></div><span class="text-gray-400 text-[10px] font-bold">Perfect Pay</span></div>
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#00CFC9]/10"><div class="w-5 h-5 rounded-full bg-[#00CFC9]"></div></div><span class="text-gray-400 text-[10px] font-bold">Ticto</span></div>
+                        <!-- Itens Duplicados -->
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#00E676]/10"><div class="w-5 h-5 rounded-full bg-[#00E676]"></div></div><span class="text-gray-400 text-[10px] font-bold">Kiwify</span></div>
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#F04E23]/10"><div class="w-5 h-5 rounded-full bg-[#F04E23]"></div></div><span class="text-gray-400 text-[10px] font-bold">Hotmart</span></div>
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#00BFFF]/10"><div class="w-5 h-5 rounded-full bg-[#00BFFF]"></div></div><span class="text-gray-400 text-[10px] font-bold">Kirvano</span></div>
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#FF0055]/10"><div class="w-5 h-5 rounded-full bg-[#FF0055]"></div></div><span class="text-gray-400 text-[10px] font-bold">Perfect Pay</span></div>
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#00CFC9]/10"><div class="w-5 h-5 rounded-full bg-[#00CFC9]"></div></div><span class="text-gray-400 text-[10px] font-bold">Ticto</span></div>
+                    </div>
+                    
+                    <!-- Linha 2 -->
+                    <div class="animate-marquee-reverse flex gap-4 w-max">
+                        <!-- Itens Originais -->
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#D500F9]/10"><div class="w-5 h-5 rounded-md transform rotate-45 bg-[#D500F9]"></div></div><span class="text-gray-400 text-[10px] font-bold">Cakto</span></div>
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#00FF40]/10"><div class="w-5 h-5 rounded-md transform rotate-45 bg-[#00FF40]"></div></div><span class="text-gray-400 text-[10px] font-bold">Greenn</span></div>
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#FFD700]/10"><div class="w-5 h-5 rounded-md transform rotate-45 bg-[#FFD700]"></div></div><span class="text-gray-400 text-[10px] font-bold">Eduzz</span></div>
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#8A2BE2]/10"><div class="w-5 h-5 rounded-md transform rotate-45 bg-[#8A2BE2]"></div></div><span class="text-gray-400 text-[10px] font-bold">Lastlink</span></div>
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#333333]/10"><div class="w-5 h-5 rounded-md transform rotate-45 bg-[#333333]"></div></div><span class="text-gray-400 text-[10px] font-bold">Monetizze</span></div>
+                         <!-- Itens Duplicados -->
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#D500F9]/10"><div class="w-5 h-5 rounded-md transform rotate-45 bg-[#D500F9]"></div></div><span class="text-gray-400 text-[10px] font-bold">Cakto</span></div>
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#00FF40]/10"><div class="w-5 h-5 rounded-md transform rotate-45 bg-[#00FF40]"></div></div><span class="text-gray-400 text-[10px] font-bold">Greenn</span></div>
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#FFD700]/10"><div class="w-5 h-5 rounded-md transform rotate-45 bg-[#FFD700]"></div></div><span class="text-gray-400 text-[10px] font-bold">Eduzz</span></div>
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#8A2BE2]/10"><div class="w-5 h-5 rounded-md transform rotate-45 bg-[#8A2BE2]"></div></div><span class="text-gray-400 text-[10px] font-bold">Lastlink</span></div>
+                        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 shadow-lg"><div class="w-10 h-10 rounded-xl flex items-center justify-center bg-[#333333]/10"><div class="w-5 h-5 rounded-md transform rotate-45 bg-[#333333]"></div></div><span class="text-gray-400 text-[10px] font-bold">Monetizze</span></div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <h1 class="hero-title text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
-          Por que criar uma oferta do zero se você pode <span class="text-orange-500">ter acesso ao que já vende?</span>
-        </h1>
-
-        <p class="hero-description text-gray-400 text-lg mb-8 leading-relaxed">
-          Tenha acesso à lista com mais de 500 checkouts e Landing Pages mais acessados da internet. Modele as estruturas milionárias das maiores plataformas do mercado e lance seu próximo produto vencedor de forma rápida e segura.
-        </p>
-
-        <ul class="hero-benefits space-y-4 mb-10">
-          <li class="flex items-start gap-3">
-            <i data-lucide="circle-check-big" class="text-orange-500 shrink-0 mt-1" width="20" height="20"></i>
-            <span class="hero-benefit-text text-gray-300 font-medium"><strong class="text-white">O fim da invenção de roda:</strong> modele a estrutura exata dos funis que já estão escalados.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <i data-lucide="circle-check-big" class="text-orange-500 shrink-0 mt-1" width="20" height="20"></i>
-            <span class="hero-benefit-text text-gray-300 font-medium"><strong class="text-white">Acesso direto ao que funciona:</strong> mais de 500 ofertas líderes prontas para você analisar.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <i data-lucide="circle-check-big" class="text-orange-500 shrink-0 mt-1" width="20" height="20"></i>
-            <span class="hero-benefit-text text-gray-300 font-medium"><strong class="text-white">Engenharia Reversa Completa:</strong> não veja apenas o checkout. Acesse também a Landing Page exata de cada oferta.</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <i data-lucide="circle-check-big" class="text-orange-500 shrink-0 mt-1" width="20" height="20"></i>
-            <span class="hero-benefit-text text-gray-300 font-medium"><strong class="text-white">Economia de Tempo e Verba:</strong> pare de criar no escuro. Comece modelando uma ideia validada.</span>
-          </li>
-        </ul>
-
-        <a href="#planos" class="hero-cta block w-full md:w-auto text-center bg-gradient-to-r from-[#FF6B00] to-[#FF5500] hover:from-[#FF5500] hover:to-[#e64d00] text-white font-extrabold py-5 px-8 rounded-lg text-lg lg:text-xl uppercase tracking-wide glow-orange transition-all transform hover:scale-[1.02]">
-          QUERO ACESSAR + DE 500 FUNIS AGORA
-        </a>
-      </div>
-
-      <div class="hero-platforms relative mt-12 md:mt-0 w-full flex flex-col items-center">
-        <div class="hero-platform-heading text-center mb-8 relative z-20">
-          <h3 class="text-gray-500 font-bold tracking-[0.2em] uppercase text-[10px] mb-2">Cobertura</h3>
-          <div class="hero-platform-count text-5xl font-black text-white mb-3 drop-shadow-lg">+20</div>
-          <div class="hero-coverage-pill inline-flex items-center gap-2 bg-[#0A0A0B] border border-gray-800 px-4 py-2 rounded-full shadow-2xl">
-            <span class="w-2 h-2 rounded-full bg-[#00FF66] animate-pulse shadow-[0_0_8px_rgba(0,255,102,0.6)]"></span>
-            <span class="text-gray-400 text-xs font-medium">operando <strong class="text-white">+ de 20 plataformas</strong> 24/7</span>
-          </div>
+    <section class="py-16 bg-[#0a0a0a] border-y border-gray-900 overflow-hidden relative">
+        <div class="text-center mb-10 relative z-10">
+            <h3 class="text-gray-500 font-bold tracking-[0.2em] uppercase text-xs mb-2">Transparência e Organização</h3>
+            <p class="text-white text-2xl font-bold">Veja o nível do material que você vai acessar</p>
         </div>
+        
+        <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10 pointer-events-none"></div>
 
-        <div class="hero-platform-track relative w-full mask-horizontal overflow-hidden flex flex-col gap-4">
-          <div id="platform-row-1" class="animate-marquee gap-4"></div>
-          <div id="platform-row-2" class="animate-marquee-reverse gap-4"></div>
+        <!-- 9 Imagens reais salvas na raiz do projeto -->
+        <div class="animate-marquee gap-6 pb-4">
+            <!-- Bloco Original: 9 imagens adaptáveis -->
+            <img src="checkout1.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/151515/555555?text=checkout1.png'" alt="Preview Checkout 1" class="h-48 md:h-64 w-auto max-w-none rounded-xl border border-gray-800 shrink-0 shadow-lg object-contain bg-[#111]"/>
+            <img src="checkout2.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/151515/555555?text=checkout2.png'" alt="Preview Checkout 2" class="h-48 md:h-64 w-auto max-w-none rounded-xl border border-gray-800 shrink-0 shadow-lg object-contain bg-[#111]"/>
+            <img src="checkout3.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/151515/555555?text=checkout3.png'" alt="Preview Checkout 3" class="h-48 md:h-64 w-auto max-w-none rounded-xl border border-gray-800 shrink-0 shadow-lg object-contain bg-[#111]"/>
+            <img src="checkout4.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/151515/555555?text=checkout4.png'" alt="Preview Checkout 4" class="h-48 md:h-64 w-auto max-w-none rounded-xl border border-gray-800 shrink-0 shadow-lg object-contain bg-[#111]"/>
+            <img src="checkout5.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/151515/555555?text=checkout5.png'" alt="Preview Checkout 5" class="h-48 md:h-64 w-auto max-w-none rounded-xl border border-gray-800 shrink-0 shadow-lg object-contain bg-[#111]"/>
+            <img src="checkout6.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/151515/555555?text=checkout6.png'" alt="Preview Checkout 6" class="h-48 md:h-64 w-auto max-w-none rounded-xl border border-gray-800 shrink-0 shadow-lg object-contain bg-[#111]"/>
+            <img src="checkout7.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/151515/555555?text=checkout7.png'" alt="Preview Checkout 7" class="h-48 md:h-64 w-auto max-w-none rounded-xl border border-gray-800 shrink-0 shadow-lg object-contain bg-[#111]"/>
+            <img src="checkout8.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/151515/555555?text=checkout8.png'" alt="Preview Checkout 8" class="h-48 md:h-64 w-auto max-w-none rounded-xl border border-gray-800 shrink-0 shadow-lg object-contain bg-[#111]"/>
+            <img src="checkout9.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/151515/555555?text=checkout9.png'" alt="Preview Checkout 9" class="h-48 md:h-64 w-auto max-w-none rounded-xl border border-gray-800 shrink-0 shadow-lg object-contain bg-[#111]"/>
+            
+            <!-- Bloco Duplicado: Para o loop infinito ficar contínuo -->
+            <img src="checkout1.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/151515/555555?text=checkout1.png'" alt="Preview Checkout 1" class="h-48 md:h-64 w-auto max-w-none rounded-xl border border-gray-800 shrink-0 shadow-lg object-contain bg-[#111]"/>
+            <img src="checkout2.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/151515/555555?text=checkout2.png'" alt="Preview Checkout 2" class="h-48 md:h-64 w-auto max-w-none rounded-xl border border-gray-800 shrink-0 shadow-lg object-contain bg-[#111]"/>
+            <img src="checkout3.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/151515/555555?text=checkout3.png'" alt="Preview Checkout 3" class="h-48 md:h-64 w-auto max-w-none rounded-xl border border-gray-800 shrink-0 shadow-lg object-contain bg-[#111]"/>
+            <img src="checkout4.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/151515/555555?text=checkout4.png'" alt="Preview Checkout 4" class="h-48 md:h-64 w-auto max-w-none rounded-xl border border-gray-800 shrink-0 shadow-lg object-contain bg-[#111]"/>
+            <img src="checkout5.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/151515/555555?text=checkout5.png'" alt="Preview Checkout 5" class="h-48 md:h-64 w-auto max-w-none rounded-xl border border-gray-800 shrink-0 shadow-lg object-contain bg-[#111]"/>
+            <img src="checkout6.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/151515/555555?text=checkout6.png'" alt="Preview Checkout 6" class="h-48 md:h-64 w-auto max-w-none rounded-xl border border-gray-800 shrink-0 shadow-lg object-contain bg-[#111]"/>
+            <img src="checkout7.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/151515/555555?text=checkout7.png'" alt="Preview Checkout 7" class="h-48 md:h-64 w-auto max-w-none rounded-xl border border-gray-800 shrink-0 shadow-lg object-contain bg-[#111]"/>
+            <img src="checkout8.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/151515/555555?text=checkout8.png'" alt="Preview Checkout 8" class="h-48 md:h-64 w-auto max-w-none rounded-xl border border-gray-800 shrink-0 shadow-lg object-contain bg-[#111]"/>
+            <img src="checkout9.png" onerror="this.onerror=null; this.src='https://placehold.co/600x400/151515/555555?text=checkout9.png'" alt="Preview Checkout 9" class="h-48 md:h-64 w-auto max-w-none rounded-xl border border-gray-800 shrink-0 shadow-lg object-contain bg-[#111]"/>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- PREVIEWS -->
-  <section class="py-16 bg-[#0a0a0a] border-y border-gray-900 overflow-hidden relative">
-    <div class="text-center mb-10 relative z-10 px-4">
-      <h3 class="text-gray-500 font-bold tracking-[0.2em] uppercase text-xs mb-2">Transparência e Organização</h3>
-      <p class="text-white text-2xl font-bold">Veja o nível do material que você vai acessar</p>
-    </div>
-
-    <div class="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10"></div>
-    <div class="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10"></div>
-
-    <div id="preview-marquee" class="animate-marquee gap-6 pb-4"></div>
-  </section>
-
-  <!-- VALUE PROP -->
-  <section class="bg-white text-black py-24 px-4">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight">O que você leva ao garantir seu acesso hoje?</h2>
-      <p class="text-gray-600 text-lg md:text-xl mb-12">
-        Pare de tentar inventar a roda do zero. O segredo dos grandes players que faturam milhões é um só:
-        <span class="font-bold text-black"> modelar funis que já provaram que convertem.</span>
-      </p>
-
-      <div class="bg-[#0A0A0B] text-white p-8 md:p-14 rounded-3xl shadow-2xl transform relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 rounded-full blur-[80px]"></div>
-        <p class="text-xl md:text-3xl font-medium leading-tight mb-10 relative z-10">
-          Pare de torrar dinheiro com tráfego em ofertas que ninguém quer comprar.
-          <span class="text-[#FF5500] font-black">Economize tempo e verba</span> acessando o acervo definitivo com as 500 ideias mais lucrativas do mercado, copiando a jornada desde a Landing Page até o Checkout.
-        </p>
-        <a href="#planos" class="inline-block w-full md:w-auto bg-[#FF5500] hover:bg-[#e64d00] text-white font-extrabold py-5 px-10 rounded-lg text-lg uppercase tracking-wide transition-colors relative z-10">
-          Quero Ter Acesso às Ideias Validadas
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- PÚBLICO -->
-  <section class="bg-[#050505] py-24 px-4">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-3xl md:text-4xl font-extrabold text-white text-center mb-16">Esse material é ideal para você que deseja:</h2>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        <article class="bg-[#111111] border border-gray-800 p-8 rounded-2xl hover:border-[#FF5500]/50 transition-all group">
-          <div class="w-14 h-14 bg-gradient-to-br from-[#FF5500]/20 to-transparent border border-[#FF5500]/30 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <i data-lucide="rocket" class="text-[#FF5500]" width="28" height="28"></i>
-          </div>
-          <h3 class="text-2xl font-bold text-white mb-4">Destravar a Produção</h3>
-          <p class="text-gray-400 leading-relaxed">Encontre produtos e nichos lucrativos que você nem imaginava que existiam e acabe com o bloqueio criativo em minutos.</p>
-        </article>
-
-        <article class="bg-[#111111] border border-gray-800 p-8 rounded-2xl hover:border-[#FF5500]/50 transition-all group">
-          <div class="w-14 h-14 bg-gradient-to-br from-[#FF5500]/20 to-transparent border border-[#FF5500]/30 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <i data-lucide="sparkles" class="text-[#FF5500]" width="28" height="28"></i>
-          </div>
-          <h3 class="text-2xl font-bold text-white mb-4">Poupar Verba de Teste</h3>
-          <p class="text-gray-400 leading-relaxed">Pare de gastar milhares de reais testando ofertas no escuro e comece com ideias que já têm demanda real e tráfego comprovado.</p>
-        </article>
-
-        <article class="bg-[#111111] border border-gray-800 p-8 rounded-2xl hover:border-[#FF5500]/50 transition-all group">
-          <div class="w-14 h-14 bg-gradient-to-br from-[#FF5500]/20 to-transparent border border-[#FF5500]/30 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <i data-lucide="shield-check" class="text-[#FF5500]" width="28" height="28"></i>
-          </div>
-          <h3 class="text-2xl font-bold text-white mb-4">Modelar a Jornada Completa</h3>
-          <p class="text-gray-400 leading-relaxed">Saiba como grandes infoprodutores estruturam os blocos da Landing Page, ancoram preços e aplicam order bumps.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ESTATÍSTICAS -->
-  <section class="bg-gradient-to-b from-[#FF6B00] to-[#FF5500] py-24 px-4 text-black relative">
-    <div class="max-w-5xl mx-auto text-center relative z-10">
-      <h3 class="font-black tracking-[0.2em] uppercase mb-4 text-black/60">O Que Está Incluso</h3>
-      <h2 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight text-white drop-shadow-sm">O seu próximo produto vencedor está aqui.</h2>
-      <p class="text-xl font-bold text-black/80 mb-16 max-w-2xl mx-auto">Uma curadoria exclusiva e organizada para você não perder tempo caçando funis pelo mercado.</p>
-
-      <div class="bg-white rounded-3xl shadow-2xl p-10 md:p-14 grid md:grid-cols-3 gap-12 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-gray-100">
-        <div class="text-center pt-4 md:pt-0 flex flex-col justify-center items-center">
-          <div class="counter text-5xl md:text-6xl font-black text-[#FF5500] mb-3" data-end="500" data-prefix="+ DE ">+ DE 0</div>
-          <div class="text-gray-800 font-bold uppercase tracking-widest text-sm mt-2">Checkouts Escalados</div>
+    <section class="bg-white text-black py-24 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight">O que você leva ao garantir seu acesso hoje?</h2>
+            <p class="text-gray-600 text-lg md:text-xl mb-12">Pare de tentar inventar a roda do zero. O segredo dos grandes players que faturam milhões é um só: <span class="font-bold text-black">modelar funis que já provaram que convertem.</span></p>
+            
+            <div class="bg-[#0A0A0B] text-white p-8 md:p-14 rounded-3xl shadow-2xl relative overflow-hidden text-left transform">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 rounded-full blur-[80px]"></div>
+                <p class="text-xl md:text-3xl font-medium leading-tight mb-10 relative z-10">
+                    Pare de torrar dinheiro com tráfego em ofertas que ninguém quer comprar. <span class="text-[#FF5500] font-black">Economize tempo e verba</span> acessando o acervo definitivo com as 500 ideias mais lucrativas do mercado, copiando a jornada desde a Landing Page até o Checkout.
+                </p>
+                <div class="text-center">
+                    <a href="#planos" class="inline-block w-full md:w-auto bg-[#FF5500] hover:bg-[#e64d00] text-white font-extrabold py-5 px-10 rounded-lg text-lg uppercase tracking-wide transition-colors relative z-10 text-center">
+                        QUERO TER ACESSO ÀS IDEIAS VALIDADAS
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="text-center pt-10 md:pt-0 flex flex-col justify-center items-center">
-          <div class="counter text-5xl md:text-6xl font-black text-[#FF5500] mb-3" data-end="100" data-suffix="%">0%</div>
-          <div class="text-gray-800 font-bold uppercase tracking-widest text-sm mt-2">Landing Pages Mapeadas</div>
+    </section>
+
+    <section class="bg-[#050505] py-24 px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-white text-center mb-16">Esse material é ideal para você que deseja:</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-[#111111] border border-gray-800 p-8 rounded-2xl hover:border-[#FF5500]/50 transition-all group">
+                    <div class="w-14 h-14 bg-gradient-to-br from-[#FF5500]/20 to-transparent border border-[#FF5500]/30 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="rocket" class="text-[#FF5500]"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Destravar a Produção</h3>
+                    <p class="text-gray-400 leading-relaxed">Encontre produtos e nichos lucrativos que você nem imaginava que existiam e acabe com o bloqueio criativo em minutos.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-[#111111] border border-gray-800 p-8 rounded-2xl hover:border-[#FF5500]/50 transition-all group">
+                    <div class="w-14 h-14 bg-gradient-to-br from-[#FF5500]/20 to-transparent border border-[#FF5500]/30 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="sparkles" class="text-[#FF5500]"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Poupar Verba de Teste</h3>
+                    <p class="text-gray-400 leading-relaxed">Pare de gastar milhares de reais testando ofertas "no escuro" e comece com ideias que já têm demanda real e tráfego pesado comprovado.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-[#111111] border border-gray-800 p-8 rounded-2xl hover:border-[#FF5500]/50 transition-all group">
+                    <div class="w-14 h-14 bg-gradient-to-br from-[#FF5500]/20 to-transparent border border-[#FF5500]/30 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="shield-check" class="text-[#FF5500]"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Modelar a Jornada Completa</h3>
+                    <p class="text-gray-400 leading-relaxed">Saiba exatamente como os maiores infoprodutores estruturam os blocos da Landing Page, ancoram preços e aplicam order bumps irresistíveis.</p>
+                </div>
+            </div>
         </div>
-        <div class="text-center pt-10 md:pt-0 flex flex-col justify-center items-center">
-          <div class="text-2xl md:text-[28px] font-black text-[#FF5500] mb-5 bg-[#FFF0E6] px-8 py-3 rounded-full border border-[#FFE0CC] whitespace-nowrap animate-pulse shadow-sm">LINK IMEDIATO</div>
-          <div class="text-gray-800 font-bold uppercase tracking-widest text-sm">Acesso Digital</div>
+    </section>
+
+    <section class="bg-gradient-to-b from-[#FF6B00] to-[#FF5500] py-24 px-4 text-black relative" id="stats-section">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <h3 class="font-black tracking-[0.2em] uppercase mb-4 text-black/60">O Que Está Incluso</h3>
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-6 tracking-tight text-white drop-shadow-sm">O seu próximo produto vencedor está aqui.</h2>
+            <p class="text-xl font-bold text-black/80 mb-16 max-w-2xl mx-auto">Uma curadoria exclusiva e organizada para você não perder tempo caçando funis pelo mercado.</p>
+            
+            <div class="bg-white rounded-[2rem] shadow-2xl p-10 md:p-14 grid md:grid-cols-3 gap-12 md:gap-4 divide-y md:divide-y-0 md:divide-x divide-gray-100">
+                <div class="text-center pt-4 md:pt-0 flex flex-col justify-center items-center">
+                    <div class="text-6xl md:text-7xl font-black text-[#FF5500] mb-3 flex items-center justify-center">
+                        <span>+ DE </span><span id="counter-checkouts">0</span>
+                    </div>
+                    <div class="text-gray-800 font-bold uppercase tracking-widest text-sm mt-2">Checkouts Escalados</div>
+                </div>
+                
+                <div class="text-center pt-10 md:pt-0 flex flex-col justify-center items-center">
+                    <div class="text-6xl md:text-7xl font-black text-[#FF5500] mb-3 flex items-center justify-center">
+                        <span id="counter-lps">0</span><span>%</span>
+                    </div>
+                    <div class="text-gray-800 font-bold uppercase tracking-widest text-sm mt-2">Landing Pages Mapeadas</div>
+                </div>
+                
+                <div class="text-center pt-10 md:pt-0 flex flex-col justify-center items-center">
+                    <div class="text-2xl md:text-[28px] font-black text-[#FF5500] mb-5 bg-[#FFF0E6] px-8 py-3 rounded-full border border-[#FFE0CC] whitespace-nowrap animate-pulse shadow-sm">
+                        LINK IMEDIATO
+                    </div>
+                    <div class="text-gray-800 font-bold uppercase tracking-widest text-sm">Acesso Digital</div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- BÔNUS -->
-  <section class="bg-[#050505] py-24 px-4 border-b border-gray-900">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Acelere Seus Resultados</h2>
-        <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">Ferramentas exclusivas para você lançar rápido.</p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        <article class="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#2a2a2a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#FF5500]/50 transition-colors">
-          <div class="absolute top-5 right-5 bg-[#FF5500] text-black text-xs font-black px-3 py-1 rounded uppercase tracking-wider">Grátis</div>
-          <h3 class="text-[#FF5500] font-black tracking-widest uppercase mb-4 text-sm">BÔNUS 1</h3>
-          <h4 class="text-2xl font-bold text-white mb-4 leading-tight">O Raio-X das Landing Pages Campeãs</h4>
-          <p class="text-gray-400 leading-relaxed">Destrave o acesso direto às URLs das Landing Pages que estão recebendo tráfego e enviando milhares de pessoas para os checkouts.</p>
-        </article>
-
-        <article class="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#2a2a2a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#FF5500]/50 transition-colors">
-          <div class="absolute top-5 right-5 bg-[#FF5500] text-black text-xs font-black px-3 py-1 rounded uppercase tracking-wider">Grátis</div>
-          <h3 class="text-[#FF5500] font-black tracking-widest uppercase mb-4 text-sm">BÔNUS 2</h3>
-          <h4 class="text-2xl font-bold text-white mb-4 leading-tight">Acervo de Order Bumps e Upsells Validados</h4>
-          <p class="text-gray-400 leading-relaxed">Acesse ofertas adicionais usadas no checkout para aumentar o valor médio de cada venda.</p>
-        </article>
-
-        <article class="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#2a2a2a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#FF5500]/50 transition-colors">
-          <div class="absolute top-5 right-5 bg-[#FF5500] text-black text-xs font-black px-3 py-1 rounded uppercase tracking-wider">Grátis</div>
-          <h3 class="text-[#FF5500] font-black tracking-widest uppercase mb-4 text-sm">BÔNUS 3</h3>
-          <h4 class="text-2xl font-bold text-white mb-4 leading-tight">Mapa Visual de Precificação e Ancoragem</h4>
-          <p class="text-gray-400 leading-relaxed">Veja os tickets praticados nas plataformas e pare de definir o preço do seu produto no escuro.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- DEPOIMENTOS -->
-  <section class="py-24 bg-[#0a0a0a] border-b border-gray-900 overflow-hidden relative">
-    <div class="max-w-4xl mx-auto text-center mb-16 px-4 relative z-10">
-      <h2 class="text-3xl md:text-5xl font-extrabold text-white">Quem comprou, achou o caminho das pedras! 💸</h2>
-    </div>
-
-    <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10"></div>
-    <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10"></div>
-
-    <div class="flex flex-col gap-6">
-      <div id="testimonial-row-1" class="animate-marquee gap-6 pb-2"></div>
-      <div id="testimonial-row-2" class="animate-marquee-reverse gap-6"></div>
-    </div>
-  </section>
-
-  <!-- PREÇOS -->
-  <section id="planos" class="bg-[#050505] pt-24 pb-32 px-4">
-    <div class="max-w-5xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Escolha Seu Acesso</h2>
-        <p class="text-[#FF5500] text-xl font-bold uppercase tracking-widest">Pare de testar no escuro hoje mesmo</p>
-      </div>
-
-      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <article class="bg-[#0d0d0d] border border-gray-800 rounded-3xl p-8 md:p-10 flex flex-col md:mt-6 opacity-90 hover:opacity-100 transition-opacity">
-          <h3 class="text-xl font-black text-gray-400 mb-2 uppercase tracking-widest">O Essencial</h3>
-          <p class="text-gray-500 mb-6 text-sm">O mínimo para iniciar a modelagem.</p>
-          <div class="text-gray-500 line-through text-lg font-bold mb-1">De R$ 39,90 por</div>
-          <div class="flex items-start gap-1 mb-8">
-            <span class="text-2xl text-gray-500 font-bold mt-2">R$</span>
-            <span class="text-6xl font-black text-white">10</span>
-            <span class="text-xl text-gray-500 font-bold mt-2">,00</span>
-          </div>
-
-          <ul class="space-y-5 mb-10 flex-grow">
-            <li class="flex items-start gap-3">
-              <i data-lucide="check" class="text-green-500 shrink-0 mt-1" width="24" height="24"></i>
-              <span class="text-gray-300 font-medium leading-tight">Acesso ao Radar Secreto com 500 Checkouts e Landing Pages</span>
-            </li>
-            <li class="flex items-start gap-3 opacity-30"><span class="text-red-500 font-black shrink-0 mt-1 px-1">X</span><span class="text-gray-500 line-through font-medium">Bônus 1 — Raio-X das LPs</span></li>
-            <li class="flex items-start gap-3 opacity-30"><span class="text-red-500 font-black shrink-0 mt-1 px-1">X</span><span class="text-gray-500 line-through font-medium">Bônus 2 — Acervo de Order Bumps</span></li>
-            <li class="flex items-start gap-3 opacity-30"><span class="text-red-500 font-black shrink-0 mt-1 px-1">X</span><span class="text-gray-500 line-through font-medium">Bônus 3 — Mapa de Precificação</span></li>
-          </ul>
-
-          <!-- TROQUE # PELO LINK DO CHECKOUT DO PLANO BÁSICO -->
-          <a href="#" class="block text-center w-full bg-gray-800 hover:bg-gray-700 text-white font-extrabold py-5 rounded-xl uppercase tracking-widest transition-colors">Selecionar Básico</a>
-        </article>
-
-        <article class="bg-gradient-to-b from-[#1a1a1a] to-[#0d0d0d] border-2 border-[#FF5500] rounded-3xl p-8 md:p-10 flex flex-col relative glow-orange">
-          <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#FF5500] text-black text-xs md:text-sm font-black px-6 py-2 rounded-full uppercase tracking-[0.2em] shadow-lg whitespace-nowrap flex items-center gap-1">
-            Recomendado <i data-lucide="sparkles" width="14" height="14"></i>
-          </div>
-
-          <h3 class="text-2xl font-black text-[#FF5500] mb-2 uppercase tracking-widest mt-4">O Completo</h3>
-          <p class="text-gray-400 mb-6 text-sm">Leve o Radar completo + todas as ferramentas.</p>
-          <div class="text-orange-500/50 line-through text-lg font-bold mb-1">De R$ 97,00 por</div>
-          <div class="flex items-start gap-1 mb-8">
-            <span class="text-2xl text-orange-400/50 font-bold mt-2">R$</span>
-            <span class="text-7xl font-black text-white">17</span>
-            <span class="text-xl text-orange-400/50 font-bold mt-2">,00</span>
-          </div>
-
-          <ul class="space-y-5 mb-10 flex-grow">
-            <li class="flex items-start gap-3"><i data-lucide="check" class="text-[#FF5500] shrink-0 mt-1" width="24" height="24"></i><span class="text-white font-bold leading-tight">Radar Secreto Completo — 500 Funis</span></li>
-            <li class="flex items-start gap-3"><i data-lucide="check" class="text-[#FF5500] shrink-0 mt-1" width="24" height="24"></i><span class="text-gray-200 font-medium">Bônus 1 — Raio-X das LPs</span></li>
-            <li class="flex items-start gap-3"><i data-lucide="check" class="text-[#FF5500] shrink-0 mt-1" width="24" height="24"></i><span class="text-gray-200 font-medium">Bônus 2 — Acervo de Order Bumps</span></li>
-            <li class="flex items-start gap-3"><i data-lucide="check" class="text-[#FF5500] shrink-0 mt-1" width="24" height="24"></i><span class="text-gray-200 font-medium">Bônus 3 — Mapa de Precificação</span></li>
-          </ul>
-
-          <!-- TROQUE # PELO LINK DO CHECKOUT DO PLANO COMPLETO -->
-          <a href="#" class="block text-center w-full bg-gradient-to-r from-[#FF6B00] to-[#FF5500] hover:from-[#FF5500] hover:to-[#e64d00] text-white font-extrabold py-5 rounded-xl text-lg uppercase tracking-wide glow-orange transition-all transform hover:scale-[1.03]">Quero o Plano Completo + Bônus</a>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- GARANTIA + FAQ -->
-  <section class="bg-[#0a0a0a] py-24 px-4 border-t border-gray-900">
-    <div class="max-w-4xl mx-auto">
-      <div class="flex flex-col md:flex-row items-center gap-8 bg-gradient-to-r from-[#111111] to-[#0a0a0a] border border-gray-800 p-10 rounded-3xl mb-24 text-center md:text-left shadow-2xl relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 rounded-full blur-[40px]"></div>
-        <div class="w-24 h-24 shrink-0 bg-[#FF5500]/10 rounded-full flex items-center justify-center border border-[#FF5500]/20">
-          <i data-lucide="shield-check" class="text-[#FF5500]" width="48" height="48"></i>
+    <section class="bg-[#050505] py-24 px-4 border-b border-gray-900">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6">Acelere Seus Resultados</h2>
+                <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">Ferramentas exclusivas para você lançar rápido.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Bônus 1 -->
+                <div class="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#2a2a2a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#FF5500]/50 transition-colors">
+                    <div class="absolute top-5 right-5 bg-[#FF5500] text-black text-xs font-black px-3 py-1 rounded uppercase tracking-wider">Grátis</div>
+                    <h3 class="text-[#FF5500] font-black tracking-widest uppercase mb-4 text-sm">BÔNUS 1</h3>
+                    <h4 class="text-2xl font-bold text-white mb-4 leading-tight">O Raio-X das Landing Pages Campeãs</h4>
+                    <p class="text-gray-400 leading-relaxed">Não veja apenas onde a venda termina. Destrave o acesso direto às URLs das Landing Pages exatas que estão injetando o maior volume de tráfego pesado e mandando milhares de pessoas para esses checkouts todos os dias.</p>
+                </div>
+                <!-- Bônus 2 -->
+                <div class="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#2a2a2a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#FF5500]/50 transition-colors">
+                    <div class="absolute top-5 right-5 bg-[#FF5500] text-black text-xs font-black px-3 py-1 rounded uppercase tracking-wider">Grátis</div>
+                    <h3 class="text-[#FF5500] font-black tracking-widest uppercase mb-4 text-sm">BÔNUS 2</h3>
+                    <h4 class="text-2xl font-bold text-white mb-4 leading-tight">Acervo de Order Bumps e Upsells Validados</h4>
+                    <p class="text-gray-400 leading-relaxed">O segredo do lucro não está no produto principal, mas no que você oferece junto com ele. Acesse e espione diretamente as ofertas adicionais (Order Bumps) que os maiores players usam direto no checkout para dobrar o faturamento no último clique.</p>
+                </div>
+                <!-- Bônus 3 -->
+                <div class="bg-gradient-to-br from-[#1a1a1a] to-[#0a0a0a] border border-[#2a2a2a] rounded-2xl p-8 relative overflow-hidden group hover:border-[#FF5500]/50 transition-colors">
+                    <div class="absolute top-5 right-5 bg-[#FF5500] text-black text-xs font-black px-3 py-1 rounded uppercase tracking-wider">Grátis</div>
+                    <h3 class="text-[#FF5500] font-black tracking-widest uppercase mb-4 text-sm">BÔNUS 3</h3>
+                    <h4 class="text-2xl font-bold text-white mb-4 leading-tight">Mapa Visual de Precificação e Ancoragem</h4>
+                    <p class="text-gray-400 leading-relaxed">Tenha a visão clara de quais valores exatos (Tickets) estão sendo mais cobrados nas plataformas. O atalho perfeito para você parar de "chutar" preços e ancorar o seu novo produto no valor que o mercado já está acostumado a pagar.</p>
+                </div>
+            </div>
         </div>
-        <div class="relative z-10">
-          <h3 class="text-3xl font-extrabold text-white mb-4">Garantia Incondicional de 7 Dias</h3>
-          <p class="text-gray-400 text-lg leading-relaxed">Se ao navegar pelas 500 ofertas você não encontrar inspiração para seu próximo produto, devolvemos cada centavo do investimento. Sem pegadinhas.</p>
+    </section>
+
+    <section class="py-24 bg-[#0a0a0a] border-b border-gray-900 overflow-hidden relative">
+        <div class="max-w-4xl mx-auto text-center mb-16 px-4 relative z-10">
+            <h2 class="text-3xl md:text-5xl font-extrabold text-white">Quem comprou, achou o caminho das pedras! 💸</h2>
         </div>
-      </div>
+        
+        <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#0a0a0a] to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#0a0a0a] to-transparent z-10 pointer-events-none"></div>
 
-      <div class="mb-10">
-        <h2 class="text-3xl md:text-4xl font-extrabold text-white text-center mb-12">Dúvidas Frequentes</h2>
+        <div class="flex flex-col gap-6">
+            <div class="animate-marquee gap-6 pb-2">
+                <div class="bg-[#111111] border border-gray-800 rounded-2xl p-8 shrink-0 w-80 md:w-[400px] flex flex-col justify-between">
+                    <div class="flex text-orange-500 mb-4">★★★★★</div>
+                    <p class="text-gray-300 italic text-lg leading-relaxed">"Caramba, eu tava travado há meses sem saber o que lançar. Em 5 minutos no Radar já tirei 3 ideias prontas!"</p>
+                </div>
+                <div class="bg-[#111111] border border-gray-800 rounded-2xl p-8 shrink-0 w-80 md:w-[400px] flex flex-col justify-between">
+                    <div class="flex text-orange-500 mb-4">★★★★★</div>
+                    <p class="text-gray-300 italic text-lg leading-relaxed">"O melhor é não precisar gastar dinheiro testando no escuro. Acervo absurdo!"</p>
+                </div>
+                <div class="bg-[#111111] border border-gray-800 rounded-2xl p-8 shrink-0 w-80 md:w-[400px] flex flex-col justify-between">
+                    <div class="flex text-orange-500 mb-4">★★★★★</div>
+                    <p class="text-gray-300 italic text-lg leading-relaxed">"Já recuperei o investimento na primeira campanha. Muito bom ter essa base de dados."</p>
+                </div>
+                <div class="bg-[#111111] border border-gray-800 rounded-2xl p-8 shrink-0 w-80 md:w-[400px] flex flex-col justify-between">
+                    <div class="flex text-orange-500 mb-4">★★★★★</div>
+                    <p class="text-gray-300 italic text-lg leading-relaxed">"Interface limpa e direto ao ponto. Exatamente o que eu precisava."</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <article class="faq-item border border-gray-800 rounded-xl bg-[#111111] mb-4 overflow-hidden">
-          <button type="button" class="faq-button w-full px-6 py-5 flex items-center justify-between text-left text-white font-bold hover:bg-[#1a1a1a] transition-colors">
-            <span class="text-lg pr-4">Como recebo o acesso ao Radar?</span>
-            <i data-lucide="chevron-down" class="faq-chevron text-[#FF5500] shrink-0" width="24" height="24"></i>
-          </button>
-          <div class="faq-answer px-6 text-gray-400 bg-[#111111]"><p class="leading-relaxed">O envio é 100% digital e imediato. Assim que o pagamento for aprovado, você receberá no e-mail o link de acesso.</p></div>
-        </article>
+    <section id="planos" class="bg-[#050505] pt-24 pb-32 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-white mb-4">Escolha Seu Acesso</h2>
+                <p class="text-[#FF5500] text-xl font-bold uppercase tracking-widest">Pare de testar no escuro hoje mesmo</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Plano Básico -->
+                <div class="bg-[#0d0d0d] border border-gray-800 rounded-3xl p-8 md:p-10 flex flex-col md:mt-6 opacity-90 hover:opacity-100 transition-opacity">
+                    <h3 class="text-xl font-black text-gray-400 mb-2 uppercase tracking-widest">O Essencial</h3>
+                    <p class="text-gray-500 mb-6 text-sm">O mínimo para iniciar a modelagem.</p>
+                    <div class="text-gray-500 line-through text-lg font-bold mb-1">De R$ 39,90 por</div>
+                    <div class="flex items-start gap-1 mb-8">
+                        <span class="text-2xl text-gray-500 font-bold mt-2">R$</span>
+                        <span class="text-6xl font-black text-white">10</span>
+                        <span class="text-xl text-gray-500 font-bold mt-2">,00</span>
+                    </div>
+                    <ul class="space-y-5 mb-10 flex-grow">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="text-green-500 shrink-0 mt-1"></i>
+                            <span class="text-gray-300 font-medium leading-tight">Acesso ao Radar Secreto com 500 Checkouts e Landing Pages</span>
+                        </li>
+                        <li class="flex items-start gap-3 opacity-30">
+                            <span class="text-red-500 font-black shrink-0 mt-1 px-1 text-xl">X</span>
+                            <span class="text-gray-500 line-through font-medium">Bônus 1 (Raio-X das LPs)</span>
+                        </li>
+                        <li class="flex items-start gap-3 opacity-30">
+                            <span class="text-red-500 font-black shrink-0 mt-1 px-1 text-xl">X</span>
+                            <span class="text-gray-500 line-through font-medium">Bônus 2 (Acervo de Order Bumps)</span>
+                        </li>
+                        <li class="flex items-start gap-3 opacity-30">
+                            <span class="text-red-500 font-black shrink-0 mt-1 px-1 text-xl">X</span>
+                            <span class="text-gray-500 line-through font-medium">Bônus 3 (Mapa de Precificação)</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-gray-800 hover:bg-gray-700 text-white font-extrabold py-5 rounded-xl uppercase tracking-widest transition-colors">
+                        Selecionar Básico
+                    </button>
+                </div>
 
-        <article class="faq-item border border-gray-800 rounded-xl bg-[#111111] mb-4 overflow-hidden">
-          <button type="button" class="faq-button w-full px-6 py-5 flex items-center justify-between text-left text-white font-bold hover:bg-[#1a1a1a] transition-colors">
-            <span class="text-lg pr-4">Esses funis realmente estão vendendo?</span>
-            <i data-lucide="chevron-down" class="faq-chevron text-[#FF5500] shrink-0" width="24" height="24"></i>
-          </button>
-          <div class="faq-answer px-6 text-gray-400 bg-[#111111]"><p class="leading-relaxed">A curadoria considera sinais de tráfego e presença ativa no mercado. Use o material como referência estratégica e valide cada oferta antes de aplicar.</p></div>
-        </article>
+                <!-- Plano Completo -->
+                <div class="bg-gradient-to-b from-[#1a1a1a] to-[#0d0d0d] border-2 border-[#FF5500] rounded-3xl p-8 md:p-10 flex flex-col relative glow-orange">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-[#FF5500] text-black text-xs md:text-sm font-black px-6 py-2 rounded-full uppercase tracking-[0.2em] shadow-lg whitespace-nowrap flex items-center gap-1">
+                        Recomendado <i data-lucide="sparkles" class="w-4 h-4"></i>
+                    </div>
+                    
+                    <h3 class="text-2xl font-black text-[#FF5500] mb-2 uppercase tracking-widest mt-4">O Completo</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Leve o Radar completo + todas as ferramentas.</p>
+                    <div class="text-orange-500/50 line-through text-lg font-bold mb-1">De R$ 97,00 por</div>
+                    <div class="flex items-start gap-1 mb-8">
+                        <span class="text-2xl text-orange-400/50 font-bold mt-2">R$</span>
+                        <span class="text-7xl font-black text-white">17</span>
+                        <span class="text-xl text-orange-400/50 font-bold mt-2">,00</span>
+                    </div>
+                    <ul class="space-y-5 mb-10 flex-grow">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="text-[#FF5500] shrink-0 mt-1"></i>
+                            <span class="text-white font-bold leading-tight">Radar Secreto Completo (500 Funis)</span>
+                        </li>
+                         <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="text-[#FF5500] shrink-0 mt-1"></i>
+                            <span class="text-gray-200 font-medium">Bônus 1 (Raio-X das LPs)</span>
+                        </li>
+                         <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="text-[#FF5500] shrink-0 mt-1"></i>
+                            <span class="text-gray-200 font-medium">Bônus 2 (Acervo de Order Bumps)</span>
+                        </li>
+                         <li class="flex items-start gap-3">
+                            <i data-lucide="check" class="text-[#FF5500] shrink-0 mt-1"></i>
+                            <span class="text-gray-200 font-medium">Bônus 3 (Mapa de Precificação)</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-gradient-to-r from-[#FF6B00] to-[#FF5500] hover:from-[#FF5500] hover:to-[#e64d00] text-white font-extrabold py-5 rounded-xl text-lg uppercase tracking-wide glow-orange transition-all transform hover:scale-[1.03]">
+                        Quero o Plano Completo + Bônus
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <article class="faq-item border border-gray-800 rounded-xl bg-[#111111] mb-4 overflow-hidden">
-          <button type="button" class="faq-button w-full px-6 py-5 flex items-center justify-between text-left text-white font-bold hover:bg-[#1a1a1a] transition-colors">
-            <span class="text-lg pr-4">Eu terei acesso apenas ao checkout final?</span>
-            <i data-lucide="chevron-down" class="faq-chevron text-[#FF5500] shrink-0" width="24" height="24"></i>
-          </button>
-          <div class="faq-answer px-6 text-gray-400 bg-[#111111]"><p class="leading-relaxed">Não. Você terá acesso aos checkouts e também às Landing Pages vinculadas ao material, permitindo analisar a jornada de ponta a ponta.</p></div>
-        </article>
-      </div>
-    </div>
-  </section>
+    <section class="bg-[#0a0a0a] py-24 px-4 border-t border-gray-900">
+        <div class="max-w-4xl mx-auto">
+            
+            <!-- Garantia -->
+            <div class="flex flex-col md:flex-row items-center gap-8 bg-gradient-to-r from-[#111111] to-[#0a0a0a] border border-gray-800 p-10 rounded-3xl mb-24 text-center md:text-left shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 rounded-full blur-[40px]"></div>
+                <div class="w-24 h-24 shrink-0 bg-[#FF5500]/10 rounded-full flex items-center justify-center border border-[#FF5500]/20 mx-auto md:mx-0">
+                    <i data-lucide="shield-check" class="text-[#FF5500] w-12 h-12"></i>
+                </div>
+                <div class="relative z-10">
+                    <h3 class="text-3xl font-extrabold text-white mb-4">Garantia Incondicional de 7 Dias</h3>
+                    <p class="text-gray-400 text-lg leading-relaxed">Se ao navegar pelas 500 ofertas você não encontrar a inspiração milionária para o seu próximo produto, devolvemos cada centavo do seu investimento imediatamente. Sem pegadinhas.</p>
+                </div>
+            </div>
 
-  <!-- RODAPÉ -->
-  <footer class="bg-[#050505] border-t border-gray-900 py-16 px-4 text-center">
-    <div class="max-w-4xl mx-auto">
-      <div class="flex items-center justify-center gap-2 mb-8 text-gray-500 font-bold uppercase tracking-widest text-sm">
-        <i data-lucide="lock" width="16" height="16"></i>
-        <span>Ambiente 100% Seguro</span>
-      </div>
+            <!-- FAQ -->
+            <div class="mb-10">
+                <h2 class="text-3xl md:text-4xl font-extrabold text-white text-center mb-12">Dúvidas Frequentes</h2>
+                
+                <div class="border border-gray-800 rounded-xl bg-[#111111] mb-4">
+                    <button class="w-full px-6 py-5 flex items-center justify-between text-left text-white font-bold hover:bg-[#1a1a1a] transition-colors" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                        <span class="text-lg pr-4">1. Como recebo o acesso ao Radar?</span>
+                        <i data-lucide="chevron-down" class="text-[#FF5500] shrink-0"></i>
+                    </button>
+                    <div class="px-6 pb-6 text-gray-400 bg-[#111111] hidden">
+                        <p class="leading-relaxed">O envio é 100% digital e imediato. Assim que o pagamento for aprovado (Cartão ou PIX), você receberá no e-mail o seu link de acesso seguro.</p>
+                    </div>
+                </div>
 
-      <p class="text-gray-600 text-sm mb-8 max-w-2xl mx-auto leading-relaxed">Este site não faz parte do Facebook ou da Meta Platforms Inc. Além disso, este site não é endossado pelo Facebook de nenhuma maneira. FACEBOOK é uma marca comercial independente da Meta Platforms, Inc.</p>
+                <div class="border border-gray-800 rounded-xl bg-[#111111] mb-4">
+                    <button class="w-full px-6 py-5 flex items-center justify-between text-left text-white font-bold hover:bg-[#1a1a1a] transition-colors" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                        <span class="text-lg pr-4">2. Esses funis realmente estão vendendo?</span>
+                        <i data-lucide="chevron-down" class="text-[#FF5500] shrink-0"></i>
+                    </button>
+                    <div class="px-6 pb-6 text-gray-400 bg-[#111111] hidden">
+                        <p class="leading-relaxed">Sim. Nossa curadoria focou puramente no volume de tráfego. Se é o checkout mais acessado, é porque o player está colocando dinheiro pesado nos anúncios e lucrando alto.</p>
+                    </div>
+                </div>
 
-      <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-500 font-medium">
-        <!-- TROQUE # PELOS LINKS DAS PÁGINAS LEGAIS -->
-        <a href="#" class="hover:text-[#FF5500] transition-colors">Termos de Uso</a>
-        <span class="opacity-30">|</span>
-        <a href="#" class="hover:text-[#FF5500] transition-colors">Política de Privacidade</a>
-        <span class="opacity-30">|</span>
-        <a href="#" class="hover:text-[#FF5500] transition-colors">Aviso Legal</a>
-      </div>
+                <div class="border border-gray-800 rounded-xl bg-[#111111] mb-4">
+                    <button class="w-full px-6 py-5 flex items-center justify-between text-left text-white font-bold hover:bg-[#1a1a1a] transition-colors" onclick="this.nextElementSibling.classList.toggle('hidden')">
+                        <span class="text-lg pr-4">3. Eu terei acesso apenas ao checkout final?</span>
+                        <i data-lucide="chevron-down" class="text-[#FF5500] shrink-0"></i>
+                    </button>
+                    <div class="px-6 pb-6 text-gray-400 bg-[#111111] hidden">
+                        <p class="leading-relaxed">Não! Essa é a grande vantagem. Você terá acesso aos Checkouts validados e, de quebra, às Landing Pages exatas que estão mandando o tráfego para eles. É o funil mapeado de ponta a ponta.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <p class="text-gray-700 text-xs mt-12 uppercase tracking-widest">© 2026 Radar Secreto. Todos os direitos reservados.</p>
-    </div>
-  </footer>
+    <footer class="bg-[#050505] border-t border-gray-900 py-16 px-4 text-center">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex items-center justify-center gap-2 mb-8 text-gray-500 font-bold uppercase tracking-widest text-sm">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+                <span>Ambiente 100% Seguro</span>
+            </div>
+            <p class="text-gray-600 text-sm mb-8 max-w-2xl mx-auto leading-relaxed">
+                Este site não faz parte do site do Facebook ou da Meta Platforms Inc. Além disso, este site não é endossado pelo Facebook de nenhuma maneira. FACEBOOK é uma marca comercial independente da Meta Platforms, Inc.
+            </p>
+            <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-500 font-medium">
+                <a href="#" class="hover:text-[#FF5500] transition-colors">Termos de Uso</a>
+                <span class="opacity-30">|</span>
+                <a href="#" class="hover:text-[#FF5500] transition-colors">Políticas de Privacidade</a>
+                <span class="opacity-30">|</span>
+                <a href="#" class="hover:text-[#FF5500] transition-colors">Aviso Legal</a>
+            </div>
+            <p class="text-gray-700 text-xs mt-12 uppercase tracking-widest">
+                © 2026 Radar Secreto. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
 
-  <script>
-    const platformsRow1 = [
-      { name: 'Kiwify', color: '#00E676', shape: 'rounded-full' },
-      { name: 'Hotmart', color: '#F04E23', shape: 'rounded-full' },
-      { name: 'Eduzz', color: '#FFD700', shape: 'rounded-full' },
-      { name: 'Ticto', color: '#00CFC9', shape: 'rounded-full' },
-      { name: 'Cakto', color: '#D500F9', shape: 'rounded-full' }
-    ];
+    <script>
+        // Inicializa os Ícones Lucide
+        lucide.createIcons();
 
-    const platformsRow2 = [
-      { name: 'Kirvano', color: '#00BFFF' },
-      { name: 'Perfect Pay', color: '#FF0055' },
-      { name: 'Greenn', color: '#00FF40' },
-      { name: 'Lastlink', color: '#8A2BE2' }
-    ];
+        // Lógica de Animação de Contagem (Intersection Observer)
+        document.addEventListener('DOMContentLoaded', () => {
+            const section = document.getElementById('stats-section');
+            const counterCheckouts = document.getElementById('counter-checkouts');
+            const counterLps = document.getElementById('counter-lps');
+            let hasAnimated = false;
 
-    function platformCard(platform, diamond = false) {
-      return `
-        <div class="w-24 h-24 bg-[#0A0A0B] border border-gray-800/80 rounded-2xl flex flex-col items-center justify-center gap-2 shrink-0 hover:border-gray-600 hover:bg-[#111111] transition-all cursor-pointer group shadow-lg">
-          <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background:${platform.color}18">
-            <div class="w-5 h-5 ${diamond ? 'rounded-md rotate-45' : 'rounded-full'} group-hover:scale-110 transition-transform duration-300" style="background-color:${platform.color}"></div>
-          </div>
-          <span class="text-gray-400 text-[10px] font-bold tracking-wide">${platform.name}</span>
-        </div>`;
-    }
+            const animateValue = (obj, start, end, duration) => {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    // Easing (easeOut)
+                    const easeOut = progress * (2 - progress);
+                    obj.innerHTML = Math.floor(easeOut * (end - start) + start);
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            };
 
-    document.getElementById('platform-row-1').innerHTML = Array(4).fill(platformsRow1).flat().map(p => platformCard(p)).join('');
-    document.getElementById('platform-row-2').innerHTML = Array(4).fill(platformsRow2).flat().map(p => platformCard(p, true)).join('');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !hasAnimated) {
+                        hasAnimated = true;
+                        // Anima 0 até 500 em 2 segundos
+                        animateValue(counterCheckouts, 0, 500, 2000);
+                        // Anima 0 até 100 em 2 segundos
+                        animateValue(counterLps, 0, 100, 2000);
+                    }
+                });
+            }, { threshold: 0.3 }); // Dispara quando 30% da seção aparecer na tela
 
-    const previews = [1,2,3,4,5,6,1,2,3,4,5,6];
-    document.getElementById('preview-marquee').innerHTML = previews.map(item => `
-      <img src="https://placehold.co/400x250/1a1a1a/555555?text=Preview+Checkout+${item}" alt="Preview do checkout ${item}" class="rounded-xl border border-gray-800 shrink-0" loading="lazy" width="400" height="250" />
-    `).join('');
-
-    const row1 = [
-      'Caramba, eu estava travado há meses sem saber o que lançar. Em cinco minutos no Radar já tirei três ideias prontas!',
-      'O melhor é não precisar gastar dinheiro testando no escuro. Acervo absurdo!',
-      'Já recuperei o investimento na primeira campanha. Muito bom ter essa base de dados.',
-      'Interface limpa e direto ao ponto. Exatamente o que eu precisava.'
-    ];
-
-    const row2 = [
-      'Nunca vi um material tão organizado. Ajudou muito a equipe aqui da agência.',
-      'Vale cada centavo. O acesso completo entrega muito pelo preço.',
-      'Finalmente uma ferramenta que entrega o que promete. Sem enrolação.',
-      'Os bônus de página e precificação ajudaram bastante no lançamento.'
-    ];
-
-    function stars() {
-      return '<span class="text-orange-500 text-xl tracking-wider">★★★★★</span>';
-    }
-
-    function testimonial(text) {
-      return `
-        <div class="bg-[#111111] border border-gray-800 rounded-2xl p-8 shrink-0 w-80 md:w-[400px] whitespace-normal flex flex-col justify-between">
-          <div class="mb-4">${stars()}</div>
-          <p class="text-gray-300 italic text-lg leading-relaxed">“${text}”</p>
-        </div>`;
-    }
-
-    document.getElementById('testimonial-row-1').innerHTML = [...row1, ...row1].map(testimonial).join('');
-    document.getElementById('testimonial-row-2').innerHTML = [...row2, ...row2].map(testimonial).join('');
-
-    document.querySelectorAll('.faq-button').forEach(button => {
-      button.addEventListener('click', () => {
-        button.closest('.faq-item').classList.toggle('open');
-      });
-    });
-
-    const counters = document.querySelectorAll('.counter');
-    const counterObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-
-        const element = entry.target;
-        const end = Number(element.dataset.end || 0);
-        const prefix = element.dataset.prefix || '';
-        const suffix = element.dataset.suffix || '';
-        const duration = 2000;
-        let start = null;
-
-        function animate(timestamp) {
-          if (!start) start = timestamp;
-          const progress = Math.min((timestamp - start) / duration, 1);
-          const easeOut = progress * (2 - progress);
-          element.textContent = `${prefix}${Math.floor(easeOut * end)}${suffix}`;
-          if (progress < 1) requestAnimationFrame(animate);
-        }
-
-        requestAnimationFrame(animate);
-        observer.unobserve(element);
-      });
-    }, { threshold: 0.2 });
-
-    counters.forEach(counter => counterObserver.observe(counter));
-
-    lucide.createIcons();
-  </script>
+            if (section) observer.observe(section);
+        });
+    </script>
 </body>
 </html>
